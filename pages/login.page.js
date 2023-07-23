@@ -1,4 +1,4 @@
-const { GenericPage } = require('@shapeways/e2e-test-utils')
+const { GenericPage } = require('/e2e-test-utils')
 
 /**
  * @class
@@ -9,7 +9,7 @@ class LoginPage extends GenericPage {
     super(page, {
       baseURL: process.env.BASE_URL,
       basePath: '/login',
-      title: 'Reshape'
+      title: 'app'
     })
     this.signInBtn = page.locator("[type='submit']")
     this.rfqNavigation = page.locator("[name='mnu_rfqs']")

@@ -1,5 +1,6 @@
 // @ts-check
-const { GenericPage } = require('@shapeways/e2e-test-utils')
+// @ts-ignore
+const { GenericPage } = require('e2e-test-utils')
 
 /**
  * This class contains helpers that are common

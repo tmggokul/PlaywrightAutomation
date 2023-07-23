@@ -1,10 +1,10 @@
 const { test } = require('@playwright/test')
-const { ReshapeApp } = require('../pages/reshapeApp.page')
+const { App } = require('../pages/app.page')
 
 test.describe('Login Page', () => {
   // Manufacturer configures status template for part tracking
   test('Review Purchase order', async ({ page }) => {
-    const manufacturer = new ReshapeApp(page)
+    const manufacturer = new App(page)
     const loginPage = manufacturer.onLoginPage()
     await loginPage.login()
     await loginPage.reviewPO()
@@ -17,7 +17,7 @@ test.describe('Login Page', () => {
   })
 
   test.fixme('Manufacturer cancels edit to statuses', async ({ page }, testInfo) => {
-  // const manufacturer = new reshapeApp(page);
+  const manufacturer = new App(page);
 
     // Xray properties to sync with Test on Jira
     testInfo.annotations.push({ type: 'test_key', description: '' })

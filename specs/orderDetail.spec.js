@@ -1,13 +1,13 @@
 // @ts-check
 
 const { test } = require('@playwright/test')
-const { ReshapeApp } = require('../pages/reshapeApp.page')
+const { App } = require('../pages/app.page')
 
 test('Manufacturer receives order and reviews details', async ({ browser }, testInfo) => {
   const context = await browser.newContext()
   const page = await context.newPage()
 
-  const manufacturer = new ReshapeApp(page)
+  const manufacturer = new App(page)
 
   const loginPage = manufacturer.onLoginPage()
 
@@ -23,7 +23,7 @@ test('Manufacturer cancels order', async ({ browser }, testInfo) => {
   const context = await browser.newContext()
   const page = await context.newPage()
 
-  const manufacturer = new ReshapeApp(page)
+  const manufacturer = new App(page)
 
   const loginPage1 = manufacturer.onLoginPage()
 
@@ -34,11 +34,12 @@ test('Manufacturer cancels order', async ({ browser }, testInfo) => {
   // Xray properties to sync with Test on Jira
   testInfo.annotations.push({ type: 'test_key', description: 'TR-139' })
 })
+
 test('Manufacturer reviews part details', async ({ browser }, testInfo) => {
   const context = await browser.newContext()
   const page = await context.newPage()
 
-  const manufacturer = new ReshapeApp(page)
+  const manufacturer = new App(page)
 
   const loginPage2 = manufacturer.onLoginPage()
   await loginPage2.login()
@@ -50,7 +51,7 @@ test('Manufacturer reviews part details', async ({ browser }, testInfo) => {
 })
 
 test('Manufacturer downloads part file', async ({ page }, testInfo) => {
-  // const manufacturer = new reshapeApp(page)
+   const manufacturer = new App(page)
 
   // Xray properties to sync with Test on Jira
   testInfo.annotations.push({ type: 'test_key', description: 'TR-141' })
