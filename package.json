@@ -1,0 +1,34 @@
+{
+    "name": "e2e-tests-template",
+    "description": "E2E Tests (Template)",
+    "devDependencies": {
+        "@playwright/test": "^1.35.1",
+        "axe-playwright": "^1.1.11",
+        "eslint": "^7.32.0",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-import": "^2.25.2",
+        "eslint-plugin-node": "^1.0.0",
+        "eslint-plugin-playwright": "^0.11.2",
+        "eslint-plugin-promise": "^5.2.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "lint:check": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "e2e:test": "npx playwright test",
+        "e2e:test-and-report": "yarn e2e:test && npx playwright show-report",
+        "e2e:test-dev-only": "npx playwright test --grep @dev",
+        "e2e:test-dev-only-and-report": "npx playwright test --grep @dev && && npx playwright show-report",
+        "e2e:test-and-report:debug": "PWDEBUG=1 npx playwright test --workers=1 && npx playwright show-report",
+        "e2e:test-dev-only:debug": "PWDEBUG=1 npx playwright test --workers=1 --grep @dev",
+        "e2e:test-dev-only-and-report:debug": "PWDEBUG=1 npx playwright test --workers=1 --grep @dev && npx playwright show-report"
+    },
+    "dependencies": {
+        "@playwright/test": "^1.28.1",
+        "@shapeways/e2e-test-utils": "^0.0.6",
+        "dotenv": "^16.0.1",
+        "dotenv-expand": "^10.0.0",
+        "sequelize": "^6.32.1"
+    }
+}

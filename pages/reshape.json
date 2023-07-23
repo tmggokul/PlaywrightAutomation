@@ -1,0 +1,928 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Reshape API",
+        "description": "Reshape API Request and Responses",
+        "contact": {
+            "email": "kavij@shapeways.com"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://qa-reshape.mfg.com",
+            "description": "QA Server"
+        },
+        {
+            "url": "http://demo.makeros.local",
+            "description": "Local Server"
+        },
+        {
+            "url": "https://qa-reshape-li.mfg.com",
+            "description": "Li Server"
+        }
+    ],
+    "paths": {
+        "/partners/v1/auth/login/token": {
+            "post": {
+                "tags": [
+                    "External Auth"
+                ],
+                "summary": "Generate token using email and password",
+                "description": "Generate token using email and password",
+                "operationId": "External Auth Login Token",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/loginToken"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/partners/v1/auth/login/with": {
+            "post": {
+                "tags": [
+                    "External Auth"
+                ],
+                "summary": "External Auth Login with",
+                "description": "External Auth Login with",
+                "operationId": "External Auth Login with",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/loginWith"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/partners/v1/auth/login/as": {
+            "post": {
+                "tags": [
+                    "External Auth"
+                ],
+                "summary": "External Auth Login as",
+                "description": "Uuid to External Auth Login as",
+                "operationId": "External Auth Login as",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LoginAs"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/partners/v1/event/order.statusUpdate": {
+            "post": {
+                "tags": [
+                    "External APIs"
+                ],
+                "summary": "Update Order status",
+                "description": "Change order status",
+                "operationId": "_handleOrderStatusUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderStatusUpdate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/partners/v1/event/order.parts": {
+            "post": {
+                "tags": [
+                    "External APIs"
+                ],
+                "summary": "Update Order status",
+                "description": "Change order status",
+                "operationId": "_handleOrderParts",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderShow"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/partners/v1/event/order.create": {
+            "post": {
+                "tags": [
+                    "External APIs"
+                ],
+                "summary": "Create Order",
+                "description": "request to create order",
+                "operationId": "Create order request",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/partners/v1/event/order.show": {
+            "post": {
+                "tags": [
+                    "External APIs"
+                ],
+                "summary": "Get order Details",
+                "description": "Uuid to Get order Details",
+                "operationId": "Get order Details",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/OrderShow"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/orderItems": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "List OrderLine Item",
+                "description": "List OrderLine Item",
+                "operationId": "ReshapeOrderLineController_list",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/orderItems/{id}": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Get OrderLine Item",
+                "description": "Get OrderLine Item",
+                "operationId": "ReshapeOrderLineController_show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/orderItems/{uuid}": {
+            "delete": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Delete order lineItem",
+                "description": "Delete order lineItem",
+                "operationId": "ReshapeOrderLineController_delete",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Order id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/parts": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Parts listing",
+                "description": "Parts listing",
+                "operationId": "GetPartsListing",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Store Parts",
+                "description": "Store Parts",
+                "operationId": "PartController_store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartsPayload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Update parts in bulk ",
+                "description": "Update parts in bulk ",
+                "operationId": "PartController_bulkUpdate",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                    
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/parts/{orderId}/{status}": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Get list of Part by staus",
+                "description": "Get list of Part by staus",
+                "operationId": "GetPartSByStatus",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "description": "Part status",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "pending"
+                        }
+                    },
+                    {
+                        "name": "orderId",
+                        "in": "path",
+                        "description": "order id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "1"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/parts/{uuid}": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Get Part by uuid",
+                "description": "Get Part by uuid",
+                "operationId": "GetPartsbyUuid",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Part uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XXXXXX"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartsPayload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Update parts",
+                "description": "Update parts",
+                "operationId": "PartController_update",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Part uuid",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XXXXXX"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/PartsPayload"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/orders": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "List Orders API",
+                "description": "List Orders API",
+                "operationId": "ReshapeOrderController_index",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Create Reshape order",
+                "description": "Create Reshape order",
+                "operationId": "ReshapeOrderController_store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReshapeOrderCreate"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/v1/orders/{uuid}": {
+            "get": {
+                "tags": [
+                    "Reshape Order API"
+                ],
+                "summary": "Get Order details by UUID",
+                "description": "Get Order details by UUID",
+                "operationId": "ReshapeOrderController_show",
+                "parameters": [
+                    {
+                        "name": "uuid",
+                        "in": "path",
+                        "description": "Order Unique Id",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "default": "XXXX-XXXX-XXXX-XXXX"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/SuccessResponse"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "loginWith": {
+                "properties": {
+                    "user_id": {
+                        "type": "string",
+                        "example": "15454"
+                    }
+                },
+                "type": "object"
+            },
+            "Login": {
+                "properties": {
+                    "user_id ": {
+                        "type": "string",
+                        "example": "w98PZRnaGhyVmYb"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginAs": {
+                "properties": {
+                    "user_id ": {
+                        "type": "string",
+                        "example": "21548454"
+                    },
+                    "order_id": {
+                        "type": "string",
+                        "example": "XXXXTOKENXXXX"
+                    }
+                },
+                "type": "object"
+            },
+            "loginToken": {
+                "properties": {
+                    "email": {
+                        "description": "User Email",
+                        "type": "string",
+                        "example": "abc@email.com"
+                    },
+                    "password": {
+                        "description": "User Password",
+                        "type": "string",
+                        "example": "XXXXXXX"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderCreate": {
+                "properties": {
+                    "Order payload": {
+                        "type": "string",
+                        "example": "XXXX"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderShow": {
+                "properties": {
+                    "transaction_id": {
+                        "description": "Order Id(uuid)",
+                        "type": "string",
+                        "example": "w98PZRnaGhyVmYb"
+                    }
+                },
+                "type": "object"
+            },
+            "OrderStatusUpdate": {
+                "properties": {
+                    "transaction_id ": {
+                        "type": "string",
+                        "example": "21548454"
+                    },
+                    "secret": {
+                        "type": "string",
+                        "example": "XXXXTOKENXXXX"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "Pending"
+                    }
+                },
+                "type": "object"
+            },
+            "SuccessResponse": {
+                "properties": {
+                    "data": {
+                        "type": "array",
+                        "items": {}
+                    },
+                    "message": {
+                        "type": "string",
+                        "example": "success"
+                    }
+                },
+                "type": "object"
+            },
+            "PartsPayload": {
+                "properties": {
+                    "external_id": {
+                        "description": "Required",
+                        "type": "string",
+                        "example": "12345"
+                    },
+                    "status": {
+                        "type": "string",
+                        "example": "string"
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "properties": {
+                                "part_name": {
+                                    "type": "string",
+                                    "example": "PartName"
+                                },
+                                "part_number": {
+                                    "type": "integer",
+                                    "example": "93705"
+                                },
+                                "quantity": {
+                                    "type": "integer",
+                                    "example": "100"
+                                },
+                                "unit_price": {
+                                    "type": "integer",
+                                    "example": "10.10"
+                                },
+                                "total_price": {
+                                    "type": "integer",
+                                    "example": "10.10"
+                                },
+                                "part_exists": {
+                                    "type": "string",
+                                    "example": "New"
+                                },
+                                "unit_quantity": {
+                                    "type": "integer",
+                                    "example": "20"
+                                },
+                                "material": {
+                                    "type": "string",
+                                    "example": "Liquid"
+                                },
+                                "part_file_url": {
+                                    "type": "string",
+                                    "example": "image_url"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "ReshapeOrderCreate": {
+                "properties": {
+                    "Payload": {
+                        "type": "string",
+                        "example": "Replace it with your payload"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
